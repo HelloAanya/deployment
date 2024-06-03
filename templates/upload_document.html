@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Document</title>
+</head>
+<style>
+body {
+  font-family: Arial, sans-serif;  /* Specify preferred font(s) */
+  background-color: grey;  /* Light gray background */
+  margin: 3rem;  /* Increase margin for better spacing */
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;  /* Increase title size slightly */
+  color: black;  /* Darker text color */
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd;  /* Add subtle bottom border */
+  padding-bottom: 0.5rem;  /* Add some padding below the border */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;  /* Set a specific form width */
+  margin: 0 auto;
+  padding: 2.2rem;  /* Add padding for better form structure */
+  border-radius: 4px;  /* Rounded corners for a softer look */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);  /* Subtle shadow effect */
+  background-color: rgb(249, 242, 242);  /* White background for clear form elements */
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;  /* Make labels slightly bolder for emphasis */
+}
+
+form input[type="text"],
+form input[type="file"] {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 1rem;  /* Adjust input font size for better readability */
+}
+
+/* Style the file input specifically */
+form input[type="file"] {
+  background-color: #f5f4f4;  /* Lighter background for file input */
+}
+
+form button {
+  background-color: #4CAF50;  /* Green button color */
+  color: white;
+  padding: 1rem 2rem;  /* Increase button padding */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;  /* Increase button font size for prominence */
+  transition: background-color 0.2s ease-in-out;  /* Smooth hover effect */
+}
+
+form button:hover {
+  background-color: #a31fc7;  /* Darker green on hover */
+}
+</style>
+<body>
+  <h2>Upload Document</h2>
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Upload</button>
+  </form>
+</body>
+</html>

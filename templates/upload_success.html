@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ad9696;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f5f7;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .document-info {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .document-info img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+        .document-info a {
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #007bff;
+            border-radius: 4px;
+            padding: 8px 16px;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .document-info a:hover {
+            background-color: #007bff;
+            color: #fff;
+            border-color: #007bff;
+        }
+        .delete-link {
+            color: #dc3545;
+            border-color: #dc3545;
+        }
+        .delete-link:hover {
+            background-color: #dc3545;
+            color: #fff;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>WELCOME</h2>
+        
+        {% for document in documents %}
+            <div class="document-info">
+                <h3>Uploaded Document:</h3>
+                <p><strong>Description:</strong> {{ document.description }}</p>
+                {% if document.document.url %}
+                    <img src="{{ document.document.url }}" alt="{{ document.description }}">
+                {% else %}
+                    <p>No preview available</p>
+                {% endif %}
+                <a href="{% url 'edit_description' document.id %}">Edit Description</a>
+                <a href="{% url 'delete_document' document.id %}" class="delete-link">Delete</a>
+            </div>
+        {% endfor %}
+
+        <a href="{% url 'upload_document' %}" style="margin-top: 20px;" class="upload-link">Upload Another Document</a>
+    </div>
+</body>
+</html>
